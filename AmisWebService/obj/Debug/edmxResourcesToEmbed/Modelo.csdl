@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AmisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Glicemia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DataMedicao" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="HoraMedicao" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NivelGlicemico" Type="Int32" Nullable="false" />
+    <Property Name="TipoGlicemia" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Paciente" Relationship="Self.FK__Glicemia__IdPaci__3F466844" FromRole="Glicemia" ToRole="Paciente" />
+  </EntityType>
+  <EntityType Name="Medico">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cpf" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Crm" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="uf" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EnderecoConsultorio" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdPessoa" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pessoa" Relationship="Self.FK__Medico__IdPessoa__3C69FB99" FromRole="Medico" ToRole="Pessoa" />
+  </EntityType>
+  <EntityType Name="Paciente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Peso" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Altura" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TipoDiabetes" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Terapia" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Diagnostico" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ObjetivoPreRefeicao" Type="Int32" Nullable="false" />
+    <Property Name="ObjetivoPosRefeicao" Type="Int32" Nullable="false" />
+    <Property Name="ObjetivoAntesDormir" Type="Int32" Nullable="false" />
+    <Property Name="IdPessoa" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Glicemia" Relationship="Self.FK__Glicemia__IdPaci__3F466844" FromRole="Paciente" ToRole="Glicemia" />
+    <NavigationProperty Name="Pessoa" Relationship="Self.FK__Paciente__IdPess__398D8EEE" FromRole="Paciente" ToRole="Pessoa" />
+  </EntityType>
+  <EntityType Name="Pessoa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sobrenome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sexo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Medico" Relationship="Self.FK__Medico__IdPessoa__3C69FB99" FromRole="Pessoa" ToRole="Medico" />
+    <NavigationProperty Name="Paciente" Relationship="Self.FK__Paciente__IdPess__398D8EEE" FromRole="Pessoa" ToRole="Paciente" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK__Glicemia__IdPaci__3F466844">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+    <End Role="Glicemia" Type="Self.Glicemia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Glicemia">
+        <PropertyRef Name="IdPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Medico__IdPessoa__3C69FB99">
+    <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+    <End Role="Medico" Type="Self.Medico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Medico">
+        <PropertyRef Name="IdPessoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Paciente__IdPess__398D8EEE">
+    <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Paciente">
+        <PropertyRef Name="IdPessoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AmisEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Glicemia" EntityType="Self.Glicemia" />
+    <EntitySet Name="Medico" EntityType="Self.Medico" />
+    <EntitySet Name="Paciente" EntityType="Self.Paciente" />
+    <EntitySet Name="Pessoa" EntityType="Self.Pessoa" />
+    <AssociationSet Name="FK__Glicemia__IdPaci__3F466844" Association="Self.FK__Glicemia__IdPaci__3F466844">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="Glicemia" EntitySet="Glicemia" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Medico__IdPessoa__3C69FB99" Association="Self.FK__Medico__IdPessoa__3C69FB99">
+      <End Role="Pessoa" EntitySet="Pessoa" />
+      <End Role="Medico" EntitySet="Medico" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Paciente__IdPess__398D8EEE" Association="Self.FK__Paciente__IdPess__398D8EEE">
+      <End Role="Pessoa" EntitySet="Pessoa" />
+      <End Role="Paciente" EntitySet="Paciente" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="AmisModel.sysdiagrams" />
+  </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AmisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Glicemia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DataMedicao" Type="date" Nullable="false" />
+    <Property Name="HoraMedicao" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="NivelGlicemico" Type="int" Nullable="false" />
+    <Property Name="TipoGlicemia" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="IdPaciente" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Medico">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cpf" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Crm" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="uf" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="EnderecoConsultorio" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="IdPessoa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Paciente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Peso" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Altura" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="TipoDiabetes" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Terapia" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Diagnostico" Type="datetime" Nullable="false" />
+    <Property Name="ObjetivoPreRefeicao" Type="int" Nullable="false" />
+    <Property Name="ObjetivoPosRefeicao" Type="int" Nullable="false" />
+    <Property Name="ObjetivoAntesDormir" Type="int" Nullable="false" />
+    <Property Name="IdPessoa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pessoa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sobrenome" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sexo" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Telefone" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Tipo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK__Glicemia__IdPaci__3F466844">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+    <End Role="Glicemia" Type="Self.Glicemia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Glicemia">
+        <PropertyRef Name="IdPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Medico__IdPessoa__3C69FB99">
+    <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+    <End Role="Medico" Type="Self.Medico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Medico">
+        <PropertyRef Name="IdPessoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Paciente__IdPess__398D8EEE">
+    <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Paciente">
+        <PropertyRef Name="IdPessoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AmisModelStoreContainer">
+    <EntitySet Name="Glicemia" EntityType="Self.Glicemia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Medico" EntityType="Self.Medico" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pessoa" EntityType="Self.Pessoa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Glicemia__IdPaci__3F466844" Association="Self.FK__Glicemia__IdPaci__3F466844">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="Glicemia" EntitySet="Glicemia" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Medico__IdPessoa__3C69FB99" Association="Self.FK__Medico__IdPessoa__3C69FB99">
+      <End Role="Pessoa" EntitySet="Pessoa" />
+      <End Role="Medico" EntitySet="Medico" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Paciente__IdPess__398D8EEE" Association="Self.FK__Paciente__IdPess__398D8EEE">
+      <End Role="Pessoa" EntitySet="Pessoa" />
+      <End Role="Paciente" EntitySet="Paciente" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

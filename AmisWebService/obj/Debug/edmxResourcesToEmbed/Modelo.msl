@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AmisModelStoreContainer" CdmEntityContainer="AmisEntities">
+    <EntitySetMapping Name="Glicemia">
+      <EntityTypeMapping TypeName="AmisModel.Glicemia">
+        <MappingFragment StoreEntitySet="Glicemia">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DataMedicao" ColumnName="DataMedicao" />
+          <ScalarProperty Name="HoraMedicao" ColumnName="HoraMedicao" />
+          <ScalarProperty Name="NivelGlicemico" ColumnName="NivelGlicemico" />
+          <ScalarProperty Name="TipoGlicemia" ColumnName="TipoGlicemia" />
+          <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Medico">
+      <EntityTypeMapping TypeName="AmisModel.Medico">
+        <MappingFragment StoreEntitySet="Medico">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Cpf" ColumnName="Cpf" />
+          <ScalarProperty Name="Crm" ColumnName="Crm" />
+          <ScalarProperty Name="uf" ColumnName="uf" />
+          <ScalarProperty Name="EnderecoConsultorio" ColumnName="EnderecoConsultorio" />
+          <ScalarProperty Name="IdPessoa" ColumnName="IdPessoa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Paciente">
+      <EntityTypeMapping TypeName="AmisModel.Paciente">
+        <MappingFragment StoreEntitySet="Paciente">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Peso" ColumnName="Peso" />
+          <ScalarProperty Name="Altura" ColumnName="Altura" />
+          <ScalarProperty Name="TipoDiabetes" ColumnName="TipoDiabetes" />
+          <ScalarProperty Name="Terapia" ColumnName="Terapia" />
+          <ScalarProperty Name="Diagnostico" ColumnName="Diagnostico" />
+          <ScalarProperty Name="ObjetivoPreRefeicao" ColumnName="ObjetivoPreRefeicao" />
+          <ScalarProperty Name="ObjetivoPosRefeicao" ColumnName="ObjetivoPosRefeicao" />
+          <ScalarProperty Name="ObjetivoAntesDormir" ColumnName="ObjetivoAntesDormir" />
+          <ScalarProperty Name="IdPessoa" ColumnName="IdPessoa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pessoa">
+      <EntityTypeMapping TypeName="AmisModel.Pessoa">
+        <MappingFragment StoreEntitySet="Pessoa">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Sobrenome" ColumnName="Sobrenome" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="AmisModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
