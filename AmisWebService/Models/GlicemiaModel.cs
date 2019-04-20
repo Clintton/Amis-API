@@ -7,6 +7,7 @@ namespace AmisWebService.Models
 {
     public class GlicemiaModel
     {
+        public int Id { get; set; }
         public string Data { get; set; }
         public string Hora { get; set; }
         public string Tipo { get; set; }

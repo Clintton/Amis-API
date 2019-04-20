@@ -15,11 +15,11 @@ namespace AmisWebService
     public partial class Glicemia
     {
         public int Id { get; set; }
-        public System.DateTime DataMedicao { get; set; }
         public string HoraMedicao { get; set; }
         public int NivelGlicemico { get; set; }
         public string TipoGlicemia { get; set; }
         public int IdPaciente { get; set; }
+        public string DataMedicao { get; set; }
     
         public virtual Paciente Paciente { get; set; }
     }

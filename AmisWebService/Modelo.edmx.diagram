@@ -13,6 +13,8 @@
         <AssociationConnector Association="AmisModel.FK__Medico__IdPessoa__3C69FB99" ManuallyRouted="false" />
         <AssociationConnector Association="AmisModel.FK__Paciente__IdPess__398D8EEE" ManuallyRouted="false" />
         <EntityTypeShape EntityType="AmisModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="AmisModel.Refeicao" Width="1.5" PointX="5.25" PointY="7.875" />
+        <AssociationConnector Association="AmisModel.FK_Refeicao_IdPaciente" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

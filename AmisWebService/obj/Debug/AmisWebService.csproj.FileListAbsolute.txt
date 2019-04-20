@@ -104,7 +104,6 @@ C:\Users\Clinton\Documents\Visual Studio 2017\Projects\AmisWebService\AmisWebSer
 C:\Users\Clinton\Documents\Visual Studio 2017\Projects\AmisWebService\AmisWebService\bin\pt-br\System.Web.WebPages.resources.dll
 C:\Users\Clinton\Documents\Visual Studio 2017\Projects\AmisWebService\AmisWebService\bin\pt-br\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Clinton\Documents\Visual Studio 2017\Projects\AmisWebService\AmisWebService\bin\pt-br\System.Web.WebPages.Razor.resources.dll
-C:\Users\Clinton\Documents\Visual Studio 2017\Projects\AmisWebService\AmisWebService\obj\Debug\AmisWebService.csprojAssemblyReference.cache
 C:\Users\Clinton\Documents\Visual Studio 2017\Projects\AmisWebService\AmisWebService\obj\Debug\AmisWebService.csproj.CoreCompileInputs.cache
 C:\Users\Clinton\Documents\Visual Studio 2017\Projects\AmisWebService\AmisWebService\obj\Debug\AmisWebService.csproj.CopyComplete
 C:\Users\Clinton\Documents\Visual Studio 2017\Projects\AmisWebService\AmisWebService\obj\Debug\AmisWebService.dll
@@ -164,3 +163,4 @@ C:\Users\Clinton\Documents\Visual Studio 2017\Projects\AmisWebService\AmisWebSer
 C:\Users\Clinton\Documents\Visual Studio 2017\Projects\AmisWebService\AmisWebService\bin\ru\System.Spatial.resources.dll
 C:\Users\Clinton\Documents\Visual Studio 2017\Projects\AmisWebService\AmisWebService\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Clinton\Documents\Visual Studio 2017\Projects\AmisWebService\AmisWebService\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\Clinton\Documents\Visual Studio 2017\Projects\AmisWebService\AmisWebService\obj\Debug\AmisWebService.csprojAssemblyReference.cache

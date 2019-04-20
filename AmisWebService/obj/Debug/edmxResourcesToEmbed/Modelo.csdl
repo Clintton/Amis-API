@@ -5,12 +5,12 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DataMedicao" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="HoraMedicao" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="NivelGlicemico" Type="Int32" Nullable="false" />
     <Property Name="TipoGlicemia" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="IdPaciente" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Paciente" Relationship="Self.FK__Glicemia__IdPaci__3F466844" FromRole="Glicemia" ToRole="Paciente" />
+    <Property Name="DataMedicao" Type="String" Unicode="false" FixedLength="false" MaxLength="50" />
   </EntityType>
   <EntityType Name="Medico">
     <Key>
@@ -40,6 +40,7 @@
     <Property Name="IdPessoa" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Glicemia" Relationship="Self.FK__Glicemia__IdPaci__3F466844" FromRole="Paciente" ToRole="Glicemia" />
     <NavigationProperty Name="Pessoa" Relationship="Self.FK__Paciente__IdPess__398D8EEE" FromRole="Paciente" ToRole="Pessoa" />
+    <NavigationProperty Name="Refeicao" Relationship="AmisModel.FK_Refeicao_IdPaciente" FromRole="Paciente" ToRole="Refeicao" />
   </EntityType>
   <EntityType Name="Pessoa">
     <Key>
@@ -110,6 +111,11 @@
       <End Role="Paciente" EntitySet="Paciente" />
     </AssociationSet>
     <EntitySet Name="sysdiagrams" EntityType="AmisModel.sysdiagrams" />
+    <EntitySet Name="Refeicao" EntityType="AmisModel.Refeicao" />
+    <AssociationSet Name="FK_Refeicao_IdPaciente" Association="AmisModel.FK_Refeicao_IdPaciente">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="Refeicao" EntitySet="Refeicao" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -121,4 +127,27 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
+  <EntityType Name="Refeicao">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Hora" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="refeicao1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+    <Property Name="Data" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Paciente" Relationship="AmisModel.FK_Refeicao_IdPaciente" FromRole="Refeicao" ToRole="Paciente" />
+  </EntityType>
+  <Association Name="FK_Refeicao_IdPaciente">
+    <End Type="AmisModel.Paciente" Role="Paciente" Multiplicity="1" />
+    <End Type="AmisModel.Refeicao" Role="Refeicao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Refeicao">
+        <PropertyRef Name="IdPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

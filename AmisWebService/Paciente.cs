@@ -18,6 +18,7 @@ namespace AmisWebService
         public Paciente()
         {
             this.Glicemia = new HashSet<Glicemia>();
+            this.Refeicao = new HashSet<Refeicao>();
         }
     
         public int Id { get; set; }
@@ -34,5 +35,7 @@ namespace AmisWebService
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Glicemia> Glicemia { get; set; }
         public virtual Pessoa Pessoa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Refeicao> Refeicao { get; set; }
     }
 }

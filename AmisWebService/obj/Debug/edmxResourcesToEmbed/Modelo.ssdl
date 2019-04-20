@@ -5,11 +5,11 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DataMedicao" Type="date" Nullable="false" />
     <Property Name="HoraMedicao" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="NivelGlicemico" Type="int" Nullable="false" />
     <Property Name="TipoGlicemia" Type="varchar" MaxLength="45" Nullable="false" />
     <Property Name="IdPaciente" Type="int" Nullable="false" />
+    <Property Name="DataMedicao" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Medico">
     <Key>
@@ -49,6 +49,16 @@
     <Property Name="Email" Type="varchar" MaxLength="45" Nullable="false" />
     <Property Name="Tipo" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Password" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Refeicao">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Hora" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="refeicao" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdPaciente" Type="int" Nullable="false" />
+    <Property Name="Data" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -96,11 +106,24 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Refeicao_IdPaciente">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+    <End Role="Refeicao" Type="Self.Refeicao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Refeicao">
+        <PropertyRef Name="IdPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="AmisModelStoreContainer">
     <EntitySet Name="Glicemia" EntityType="Self.Glicemia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Medico" EntityType="Self.Medico" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pessoa" EntityType="Self.Pessoa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Refeicao" EntityType="Self.Refeicao" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Glicemia__IdPaci__3F466844" Association="Self.FK__Glicemia__IdPaci__3F466844">
       <End Role="Paciente" EntitySet="Paciente" />
@@ -113,6 +136,10 @@
     <AssociationSet Name="FK__Paciente__IdPess__398D8EEE" Association="Self.FK__Paciente__IdPess__398D8EEE">
       <End Role="Pessoa" EntitySet="Pessoa" />
       <End Role="Paciente" EntitySet="Paciente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Refeicao_IdPaciente" Association="Self.FK_Refeicao_IdPaciente">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="Refeicao" EntitySet="Refeicao" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
