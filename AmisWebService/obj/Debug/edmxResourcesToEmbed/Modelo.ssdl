@@ -37,6 +37,14 @@
     <Property Name="ObjetivoAntesDormir" Type="int" Nullable="false" />
     <Property Name="IdPessoa" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Paciente_Vinculado">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdPaciente" Type="int" />
+    <Property Name="IdMedico" Type="int" />
+  </EntityType>
   <EntityType Name="Pessoa">
     <Key>
       <PropertyRef Name="Id" />
@@ -94,6 +102,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Paciente___IdMed__03F0984C">
+    <End Role="Medico" Type="Self.Medico" Multiplicity="0..1" />
+    <End Role="Paciente_Vinculado" Type="Self.Paciente_Vinculado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medico">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Paciente_Vinculado">
+        <PropertyRef Name="IdMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Paciente___IdPac__02FC7413">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+    <End Role="Paciente_Vinculado" Type="Self.Paciente_Vinculado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Paciente_Vinculado">
+        <PropertyRef Name="IdPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Paciente__IdPess__398D8EEE">
     <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
     <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
@@ -122,6 +154,7 @@
     <EntitySet Name="Glicemia" EntityType="Self.Glicemia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Medico" EntityType="Self.Medico" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Paciente_Vinculado" EntityType="Self.Paciente_Vinculado" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pessoa" EntityType="Self.Pessoa" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Refeicao" EntityType="Self.Refeicao" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -132,6 +165,14 @@
     <AssociationSet Name="FK__Medico__IdPessoa__3C69FB99" Association="Self.FK__Medico__IdPessoa__3C69FB99">
       <End Role="Pessoa" EntitySet="Pessoa" />
       <End Role="Medico" EntitySet="Medico" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Paciente___IdMed__03F0984C" Association="Self.FK__Paciente___IdMed__03F0984C">
+      <End Role="Medico" EntitySet="Medico" />
+      <End Role="Paciente_Vinculado" EntitySet="Paciente_Vinculado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Paciente___IdPac__02FC7413" Association="Self.FK__Paciente___IdPac__02FC7413">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="Paciente_Vinculado" EntitySet="Paciente_Vinculado" />
     </AssociationSet>
     <AssociationSet Name="FK__Paciente__IdPess__398D8EEE" Association="Self.FK__Paciente__IdPess__398D8EEE">
       <End Role="Pessoa" EntitySet="Pessoa" />

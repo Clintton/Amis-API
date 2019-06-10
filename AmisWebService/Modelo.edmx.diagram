@@ -15,6 +15,9 @@
         <EntityTypeShape EntityType="AmisModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="AmisModel.Refeicao" Width="1.5" PointX="5.25" PointY="7.875" />
         <AssociationConnector Association="AmisModel.FK_Refeicao_IdPaciente" />
+        <EntityTypeShape EntityType="AmisModel.Paciente_Vinculado" Width="1.5" PointX="8.25" PointY="3.5" />
+        <AssociationConnector Association="AmisModel.FK__Paciente___IdMed__03F0984C" />
+        <AssociationConnector Association="AmisModel.FK__Paciente___IdPac__02FC7413" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

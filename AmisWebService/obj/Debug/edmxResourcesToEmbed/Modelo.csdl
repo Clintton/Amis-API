@@ -23,6 +23,7 @@
     <Property Name="EnderecoConsultorio" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="IdPessoa" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Pessoa" Relationship="Self.FK__Medico__IdPessoa__3C69FB99" FromRole="Medico" ToRole="Pessoa" />
+    <NavigationProperty Name="Paciente_Vinculado" Relationship="AmisModel.FK__Paciente___IdMed__03F0984C" FromRole="Medico" ToRole="Paciente_Vinculado" />
   </EntityType>
   <EntityType Name="Paciente">
     <Key>
@@ -41,6 +42,7 @@
     <NavigationProperty Name="Glicemia" Relationship="Self.FK__Glicemia__IdPaci__3F466844" FromRole="Paciente" ToRole="Glicemia" />
     <NavigationProperty Name="Pessoa" Relationship="Self.FK__Paciente__IdPess__398D8EEE" FromRole="Paciente" ToRole="Pessoa" />
     <NavigationProperty Name="Refeicao" Relationship="AmisModel.FK_Refeicao_IdPaciente" FromRole="Paciente" ToRole="Refeicao" />
+    <NavigationProperty Name="Paciente_Vinculado" Relationship="AmisModel.FK__Paciente___IdPac__02FC7413" FromRole="Paciente" ToRole="Paciente_Vinculado" />
   </EntityType>
   <EntityType Name="Pessoa">
     <Key>
@@ -116,6 +118,15 @@
       <End Role="Paciente" EntitySet="Paciente" />
       <End Role="Refeicao" EntitySet="Refeicao" />
     </AssociationSet>
+    <EntitySet Name="Paciente_Vinculado" EntityType="AmisModel.Paciente_Vinculado" />
+    <AssociationSet Name="FK__Paciente___IdMed__03F0984C" Association="AmisModel.FK__Paciente___IdMed__03F0984C">
+      <End Role="Medico" EntitySet="Medico" />
+      <End Role="Paciente_Vinculado" EntitySet="Paciente_Vinculado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Paciente___IdPac__02FC7413" Association="AmisModel.FK__Paciente___IdPac__02FC7413">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="Paciente_Vinculado" EntitySet="Paciente_Vinculado" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -146,6 +157,40 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Refeicao">
+        <PropertyRef Name="IdPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Paciente_Vinculado">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdPaciente" Type="Int32" />
+    <Property Name="IdMedico" Type="Int32" />
+    <NavigationProperty Name="Medico" Relationship="AmisModel.FK__Paciente___IdMed__03F0984C" FromRole="Paciente_Vinculado" ToRole="Medico" />
+    <NavigationProperty Name="Paciente" Relationship="AmisModel.FK__Paciente___IdPac__02FC7413" FromRole="Paciente_Vinculado" ToRole="Paciente" />
+  </EntityType>
+  <Association Name="FK__Paciente___IdMed__03F0984C">
+    <End Type="AmisModel.Medico" Role="Medico" Multiplicity="0..1" />
+    <End Type="AmisModel.Paciente_Vinculado" Role="Paciente_Vinculado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medico">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Paciente_Vinculado">
+        <PropertyRef Name="IdMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Paciente___IdPac__02FC7413">
+    <End Type="AmisModel.Paciente" Role="Paciente" Multiplicity="0..1" />
+    <End Type="AmisModel.Paciente_Vinculado" Role="Paciente_Vinculado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Paciente_Vinculado">
         <PropertyRef Name="IdPaciente" />
       </Dependent>
     </ReferentialConstraint>

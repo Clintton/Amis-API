@@ -14,6 +14,12 @@ namespace AmisWebService
     
     public partial class Medico
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Medico()
+        {
+            this.Paciente_Vinculado = new HashSet<Paciente_Vinculado>();
+        }
+    
         public int Id { get; set; }
         public string Cpf { get; set; }
         public string Crm { get; set; }
@@ -22,5 +28,7 @@ namespace AmisWebService
         public int IdPessoa { get; set; }
     
         public virtual Pessoa Pessoa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Paciente_Vinculado> Paciente_Vinculado { get; set; }
     }
 }

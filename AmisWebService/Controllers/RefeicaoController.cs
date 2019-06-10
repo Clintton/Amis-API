@@ -33,5 +33,43 @@ namespace AmisWebService
 
             db.SaveChanges();
         }
+
+        [HttpPost]
+        [Route("api/listar_refeicao")]
+        public List<RefeicaoModel> ListarGlicemia([FromBody]RefeicaoModel model)
+        {
+            var userID = db.Pessoa.Where(x => x.Email == model.Email).Select(x => x.Id);
+            List<RefeicaoModel> refeicaoList = new List<RefeicaoModel>();
+            IEnumerable<Refeicao> listaGlic = null;
+            IEnumerable<int> pacienteID = null;
+
+            foreach (var item in userID)
+            {
+                pacienteID = db.Paciente.Where(x => x.IdPessoa == item).Select(x => x.Id);
+
+                listaGlic = db.Refeicao.Where(x => x.IdPaciente == item);
+
+            }
+
+            foreach (var item in pacienteID)
+            {
+
+                listaGlic = db.Refeicao.Where(x => x.IdPaciente == item);
+
+            }
+
+            foreach (var itemGlic in listaGlic)
+            {
+                RefeicaoModel refeicaoModel = new RefeicaoModel();
+
+                refeicaoModel.Data = itemGlic.Data;
+                refeicaoModel.Hora = itemGlic.Hora;
+                refeicaoModel.Id = itemGlic.Id;
+                refeicaoModel.Refeicao = itemGlic.refeicao1;
+                refeicaoList.Add(refeicaoModel);
+            }
+
+            return refeicaoList;
+        }
     }
 }

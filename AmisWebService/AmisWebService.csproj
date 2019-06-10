@@ -237,8 +237,10 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\GlicemiasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PacientesVinculadosController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VincularController.cs" />
     <Compile Include="Glicemia.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
@@ -269,6 +271,9 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="OAuthProvider.cs" />
     <Compile Include="Paciente.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Paciente_Vinculado.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Pessoa.cs">

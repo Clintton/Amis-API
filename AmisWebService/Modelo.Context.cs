@@ -31,5 +31,6 @@ namespace AmisWebService
         public virtual DbSet<Pessoa> Pessoa { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Refeicao> Refeicao { get; set; }
+        public virtual DbSet<Paciente_Vinculado> Paciente_Vinculado { get; set; }
     }
 }
